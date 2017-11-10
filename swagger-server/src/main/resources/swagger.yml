@@ -1,0 +1,199 @@
+swagger: '2.0'
+info:
+  description: 'Swagger的简单示例, 包括swagger-codegen, swagger2markup 和 asciidoctor.'
+  version: v1
+  title: Swagger Demo
+  termsOfService: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  contact:
+    name: Damon
+    url: 'http://www.google.com'
+    email: damon.q@iv66.net
+  license:
+    name: Apache License
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: 'localhost:8080'
+basePath: /
+tags:
+  - name: category-api
+    description: Category Api
+  - name: book-api
+    description: Book Api
+schemes:
+  - http
+  - https
+paths:
+  /v1/book/getByCategoryId:
+    get:
+      tags:
+        - book-api
+      summary: 根据分类获取书籍
+      operationId: getBooksByCategoryUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: query
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Book'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      security:
+        - api_key: []
+  /v1/book/update:
+    post:
+      tags:
+        - book-api
+      summary: 更新书籍
+      operationId: updateUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: id
+          description: id
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: boolean
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      security:
+        - api_key: []
+  '/v1/book/{id}':
+    get:
+      tags:
+        - book-api
+      summary: 根据ID获取书籍
+      operationId: getBookByIdUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Book'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      security:
+        - api_key: []
+  /v1/category/:
+    get:
+      tags:
+        - category-api
+      summary: 获取全部分类
+      operationId: getAllUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Category'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  '/v1/category/{id}':
+    get:
+      tags:
+        - category-api
+      summary: 根据ID获取分类
+      operationId: getUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Category'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+definitions:
+  Book:
+    type: object
+    properties:
+      author:
+        type: string
+        description: 作者
+      categoryId:
+        type: integer
+        format: int32
+      id:
+        type: integer
+        format: int32
+      name:
+        type: string
+        description: 书名
+  Category:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      name:
+        type: string

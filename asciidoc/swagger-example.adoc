@@ -1,0 +1,331 @@
+= Swagger Demo
+
+
+[[_overview]]
+== Overview
+Swagger的简单示例, 包括swagger-codegen, swagger2markup 和 asciidoctor.
+
+
+=== Version information
+[%hardbreaks]
+__Version__ : v1
+
+
+=== Contact information
+[%hardbreaks]
+__Contact__ : Damon
+__Contact Email__ : damon.q@iv66.net
+
+
+=== License information
+[%hardbreaks]
+__License__ : Apache License
+__License URL__ : http://www.apache.org/licenses/LICENSE-2.0.html
+__Terms of service__ : http://www.apache.org/licenses/LICENSE-2.0.html
+
+
+=== URI scheme
+[%hardbreaks]
+__Host__ : localhost:8080
+__BasePath__ : /
+__Schemes__ : HTTP, HTTPS
+
+
+=== Tags
+
+* book-api : Book Api
+* category-api : Category Api
+
+
+
+
+[[_paths]]
+== Paths
+
+[[_getbooksbycategoryusingget]]
+=== 根据分类获取书籍
+....
+GET /v1/book/getByCategoryId
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**id** +
+__required__|id|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_book,Book>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* book-api
+
+
+==== Security
+
+[options="header", cols=".^3,.^4"]
+|===
+|Type|Name
+|**apiKey**|**<<_api_key,api_key>>**
+|===
+
+
+[[_updateusingpost]]
+=== 更新书籍
+....
+POST /v1/book/update
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**id** +
+__optional__|id|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|boolean
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* book-api
+
+
+==== Security
+
+[options="header", cols=".^3,.^4"]
+|===
+|Type|Name
+|**apiKey**|**<<_api_key,api_key>>**
+|===
+
+
+[[_getbookbyidusingget]]
+=== 根据ID获取书籍
+....
+GET /v1/book/{id}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_book,Book>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* book-api
+
+
+==== Security
+
+[options="header", cols=".^3,.^4"]
+|===
+|Type|Name
+|**apiKey**|**<<_api_key,api_key>>**
+|===
+
+
+[[_getallusingget]]
+=== 获取全部分类
+....
+GET /v1/category/
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_category,Category>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* category-api
+
+
+[[_getusingget]]
+=== 根据ID获取分类
+....
+GET /v1/category/{id}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_category,Category>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* category-api
+
+
+
+
+[[_definitions]]
+== Definitions
+
+[[_book]]
+=== Book
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**author** +
+__optional__|作者|string
+|**categoryId** +
+__optional__||integer (int32)
+|**id** +
+__optional__||integer (int32)
+|**name** +
+__optional__|书名|string
+|===
+
+
+[[_category]]
+=== Category
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**id** +
+__optional__|integer (int32)
+|**name** +
+__optional__|string
+|===
+
+
+
+
+[[_securityscheme]]
+== Security
+
+[[_api_key]]
+=== api_key
+[%hardbreaks]
+__Type__ : apiKey
+__Name__ : api_key
+__In__ : HEADER
+
+
+

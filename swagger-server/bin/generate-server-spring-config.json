@@ -1,0 +1,8 @@
+{
+  "groupId": "com.example",
+  "artifactId": "swagger-client-java",
+  "artifactVersion": "1.0.0",
+  "library": "spring-boot",
+  "java8": true,
+  "dateLibrary": "java8"
+}
