@@ -44,4 +44,4 @@ java -jar swagger-codegen-cli.jar generate \
   -o $SERVER_HOME/jaxrs-resteasy
 
 cd $pwd/../..
-mvn clean install
+mvn clean install -Dmaven.test.skip

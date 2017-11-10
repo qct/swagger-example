@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * <p>Created by Damon.Q on 2017/10/27.
+ * <p>Created by qct on 2017/10/27.
  */
 @ApiModel
 public class Book {

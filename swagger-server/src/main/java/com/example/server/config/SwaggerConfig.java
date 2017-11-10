@@ -23,7 +23,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * <p>Created by Damon.Q on 2017/10/27.
+ * <p>Created by qct on 2017/10/27.
  */
 @Configuration
 @EnableSwagger2
@@ -85,7 +85,7 @@ public class SwaggerConfig {
             .title("Swagger Demo")
             .description("Swagger的简单示例, 包括swagger-codegen, swagger2markup 和 asciidoctor.")
             .termsOfServiceUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
-            .contact(new Contact("Damon", "http://www.google.com", "damon.q@iv66.net"))
+            .contact(new Contact("qct", "http://www.google.com", "quchentao@163.com"))
             .license("Apache License")
             .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
             .version("v1")
