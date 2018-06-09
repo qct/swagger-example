@@ -1,5 +1,6 @@
 package com.example.server.api;
 
+import com.example.server.exception.DemoException;
 import com.example.server.model.Book;
 import com.example.server.service.BookService;
 import io.swagger.annotations.ApiOperation;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * <p>Created by qct on 2017/10/27.
+ * Book API.
+ *
+ * @author qct
+ * @date 2017/10/27
  */
 @RestController
 @RequestMapping("/v1/book")
@@ -30,7 +34,7 @@ public class BookApi {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "根据ID获取书籍")
-    public Book getBookById(@PathVariable("id") Integer id) {
+    public Book getBookById(@PathVariable("id") Integer id) throws DemoException {
         return bookService.getById(id);
     }
 

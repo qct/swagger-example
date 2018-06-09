@@ -1,13 +1,19 @@
 package com.example.server.service;
 
+import com.example.server.exception.BookNotFoundException;
+import com.example.server.exception.DemoException;
 import com.example.server.model.Book;
 import com.google.common.collect.Lists;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 /**
- * <p>Created by qct on 2017/10/27.
+ * Book service.
+ *
+ * @author qct
+ * @date 2017/10/27
  */
 @Service
 public class BookService {
@@ -17,10 +23,12 @@ public class BookService {
         new Book(2, 1, "Effective Java", "Joshua Bloch"),
         new Book(3, 2, "挪威的森林", "村上春树")
     );
-    private static final Book NOT_EXIST = new Book(-1, -1, "NOT EXIST", "NO AUTHOR");
 
-    public Book getById(int id) {
-        return BOOKS.stream().filter(b -> id == b.getId()).findAny().orElse(NOT_EXIST);
+    public Book getById(int id) throws DemoException {
+        return BOOKS.stream()
+            .filter(b -> id == b.getId())
+            .findFirst()
+            .orElseThrow((Supplier<DemoException>) () -> new BookNotFoundException("book not found"));
     }
 
     public List<Book> getByCategoryId(Integer categoryId) {

@@ -3,6 +3,7 @@ package com.example.server.config;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,12 +23,19 @@ import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+
 /**
- * <p>Created by qct on 2017/10/27.
+ * Swagger configuration.
+ *
+ * @author qct
+ * @date 2017/10/27
  */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
+
+    @Value("${server.port}")
+    private Integer port;
 
     @Bean
     public Docket api() {
@@ -36,7 +44,7 @@ public class SwaggerConfig {
             .apis(RequestHandlerSelectors.any())
             .paths(PathSelectors.regex("/v1/.*"))
             .build()
-            .host("localhost:8080")
+            .host("127.0.0.1:" + port)
             .protocols(Sets.newHashSet("http", "https"))
             .securitySchemes(Lists.newArrayList(new ApiKey("api_key", "api_key", "header")))
             .securityContexts(Lists.newArrayList(securityContext()))
@@ -83,12 +91,12 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
             .title("Swagger Demo")
-            .description("Swagger的简单示例, 包括swagger-codegen, swagger2markup 和 asciidoctor.")
+            .description("Swagger Demo, including swagger-codegen, swagger2markup and asciidoctor.")
             .termsOfServiceUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
-            .contact(new Contact("qct", "http://www.google.com", "quchentao@163.com"))
+            .contact(new Contact("qct", "http://qct.github.com", "tango.qct@gmail.com"))
             .license("Apache License")
             .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
-            .version("v1")
+            .version("v1.1.0")
             .build();
     }
 }

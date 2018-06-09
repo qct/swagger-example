@@ -1,12 +1,17 @@
 package com.example.server.service;
 
+import com.example.server.exception.CategoryNotFoundException;
+import com.example.server.exception.DemoException;
 import com.example.server.model.Category;
 import com.google.common.collect.Lists;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
- * <p>Created by qct on 2017/10/27.
+ * Category service.
+ *
+ * @author qct
+ * @date 2017/10/27
  */
 @Service
 public class CategoryService {
@@ -16,13 +21,14 @@ public class CategoryService {
         new Category(2, "文学")
     );
 
-    private static final Category NOT_EXIST = new Category(-1, "NOT EXIST");
-
     public List<Category> getAll() {
         return CATEGORIES;
     }
 
-    public Category get(Integer id) {
-        return CATEGORIES.stream().filter(c -> id == c.getId()).findAny().orElse(NOT_EXIST);
+    public Category get(Integer id) throws DemoException {
+        return CATEGORIES.stream()
+            .filter(c -> id == c.getId())
+            .findAny()
+            .orElseThrow(() -> new CategoryNotFoundException("category not found"));
     }
 }
