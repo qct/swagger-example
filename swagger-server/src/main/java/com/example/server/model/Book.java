@@ -1,19 +1,22 @@
 package com.example.server.model;
 
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 /**
- * <p>Created by qct on 2017/10/27.
+ * Book.
+ *
+ * @author qct
+ * @date 2017/10/27
  */
 @ApiModel
 public class Book {
 
     private int id;
+
     private int categoryId;
-    @ApiModelProperty("书名")
+
     private String name;
-    @ApiModelProperty("作者")
+
     private String author;
 
     public Book(int id, int categoryId, String name, String author) {

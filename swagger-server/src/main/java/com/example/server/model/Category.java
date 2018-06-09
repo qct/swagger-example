@@ -1,11 +1,18 @@
 package com.example.server.model;
 
+import io.swagger.annotations.ApiModel;
+
 /**
- * <p>Created by qct on 2017/10/27.
+ * Category.
+ *
+ * @author qct
+ * @date 2017/10/27
  */
+@ApiModel
 public class Category {
 
     private int id;
+
     private String name;
 
     public Category(int id, String name) {
