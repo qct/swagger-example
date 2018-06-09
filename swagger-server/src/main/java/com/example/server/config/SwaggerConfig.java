@@ -34,7 +34,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    @Value("${server.port}")
+    @Value("${server.address:127.0.0.1}")
+    private String address;
+
+    @Value("${server.port:8080}")
     private Integer port;
 
     @Bean
@@ -44,7 +47,7 @@ public class SwaggerConfig {
             .apis(RequestHandlerSelectors.any())
             .paths(PathSelectors.regex("/v1/.*"))
             .build()
-            .host("127.0.0.1:" + port)
+            .host(address + ":" + port)
             .protocols(Sets.newHashSet("http", "https"))
             .securitySchemes(Lists.newArrayList(new ApiKey("api_key", "api_key", "header")))
             .securityContexts(Lists.newArrayList(securityContext()))
