@@ -23,9 +23,11 @@
         <java.version>1.8</java.version>
 
         <springfox-swagger2.version>2.9.0</springfox-swagger2.version>
-        <swagger2markup-maven-plugin.version>1.3.3</swagger2markup-maven-plugin.version>
+        <swagger2markup-maven-plugin.version>1.3.7</swagger2markup-maven-plugin.version>
         <asciidoctor-maven-plugin.version>1.5.6</asciidoctor-maven-plugin.version>
         <asciidoctorj-pdf.version>1.5.0-alpha.16</asciidoctorj-pdf.version>
+        <jacoco-maven-plugin.version>0.8.1</jacoco-maven-plugin.version>
+        <maven-surefire-report-plugin.version>2.21.0</maven-surefire-report-plugin.version>
 
         <swagger.input>${project.basedir}/src/main/resources/swagger.yml</swagger.input>
         <generated.asciidoc.directory>${project.basedir}/../asciidoc/</generated.asciidoc.directory>
@@ -212,7 +214,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.9</version>
+                <version>${jacoco-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>pre-test</id>
@@ -248,7 +250,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.20.1</version>
+                <version>${maven-surefire-report-plugin.version}</version>
                 <executions>
                     <execution>
                         <phase>test</phase>
