@@ -1,27 +1,27 @@
 # Swagger 示例
 - [快速开始](#快速开始)  
-- [OpenAPI 和 Swagger](#OpenAPI-和-Swagger)
-  * [OpenAPI](#OpenAPI)
-  * [Swagger](#Swagger)
-  * [为什么要使用OpenAPI](#为什么要使用OpenAPI)
-- [Swagger规范介绍](#Swagger规范介绍)
+- [OpenAPI 和 Swagger](#openapi-和-swagger)
+  * [OpenAPI](#openapi)
+  * [Swagger](#swagger)
+  * [为什么要使用OpenAPI](#为什么要使用openapi)
+- [Swagger规范介绍](#swagger规范介绍)
   * [基本结构](#基本结构)
   * [元数据](#元数据)
-  * [基本URL](#基本URL)
+  * [基本URL](#基本url)
   * [消费和生产](#消费和生产)
   * [路径](#路径)
   * [参数](#参数)
   * [响应](#响应)
   * [输入和输出模型](#输入和输出模型)
   * [认证](#认证)
-- [Swagger工具箱介绍](#Swagger工具箱介绍)
-  * [Swagger Editor](#Swagger-Editor)
-  * [Swagger Codegen](#Swagger-Codegen)
-  * [Swagger UI](#Swagger-UI)
+- [Swagger工具箱介绍](#swagger工具箱介绍)
+  * [Swagger Editor](#swagger-editor)
+  * [Swagger Codegen](#swagger-codegen)
+  * [Swagger UI](#swagger-ui)
 - [asciidoctor](#asciidoctor)
   
 
-## 如何开始
+## 快速开始
 
 1. install: git clone 之后, 在根目录执行:
 
