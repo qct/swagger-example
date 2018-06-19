@@ -1,5 +1,5 @@
 # Swagger 示例
-- [如何开始](#如何开始)  
+- [快速开始](#快速开始)  
 - [OpenAPI 和 Swagger](#OpenAPI-和-Swagger)
   * [OpenAPI](#OpenAPI)
   * [Swagger](#Swagger)
@@ -14,11 +14,11 @@
   * [响应](#响应)
   * [输入和输出模型](#输入和输出模型)
   * [认证](#认证)
-- [Swagger工具箱](#Swagger工具箱)
+- [Swagger工具箱介绍](#Swagger工具箱介绍)
   * [Swagger Editor](#Swagger-Editor)
-  * [Swagger UI](#Swagger-UI)
   * [Swagger Codegen](#Swagger-Codegen)
-  * [asciidoctor](#asciidoctor)
+  * [Swagger UI](#Swagger-UI)
+- [asciidoctor](#asciidoctor)
   
 
 ## 如何开始
@@ -52,10 +52,13 @@ java -jar swagger-server/target/swagger-server-${version}.jar
 ```
 
 3. 探索
+
 swagger.json: `http://127.0.0.1:8080/v2/api-docs`
 
 swagger-ui: `http://127.0.0.1:8080/swagger-ui.html`
 
+---
+### ***OpenAPI 和 Swagger 开源工具介绍***
 
 ## OpenAPI 和 Swagger
 ### OpenAPI
@@ -66,7 +69,9 @@ OpenAPI规范(以前叫Swagger规范)是Linux基金会的一个项目，试图�
 * 安全认证方法
 * 联系信息、许可证、使用条款和其他信息
 
-我们可以选择使用JSON或者YAML的语言格式来编写API文档， 这两种格式对人和机器都是可读的
+我们可以选择使用JSON或者YAML的语言格式来编写API文档， 这两种格式对人和机器都是可读的。完整的OpenAPI 规范如下：
+[OpenAPI 2.0 Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md),
+[OpenAPI 3.0 Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md)
 
 ### Swagger
 
@@ -74,8 +79,8 @@ Swagger是围绕OpenAPI规范建立的一系列工具，可以帮我们设计、
 
 主要工具包括：
 * Swagger Editor – 基于浏览器的编写OpenAPI文档的工具
-* Swagger UI – 把OpenAPI文档转换成交互式文档的工具
 * Swagger Codegen – 从OpenAPI文档生成服务器和客户端代码
+* Swagger UI – 把OpenAPI文档转换成交互式文档的工具
 
 ### 为什么要使用OpenAPI
 API描述自己结构的能力是OpenAPI中所有卓越功能的根源。一旦写好OpenAPI文档，OpenAPI规范和Swagger工具可以通过各种方式进一步驱动API开发：
@@ -84,11 +89,11 @@ API描述自己结构的能力是OpenAPI中所有卓越功能的根源。一旦�
 * 使用Swagger Codegen，可以为40多种语言的API 生成客户端。
 * 使用Swagger UI生成交互式API文档，让用户直接在浏览器中尝试API调用。
 * 使用OpenAPI规范文档将API相关工具连接到API。例如，将规范导入到SoapUI中，为API创建自动测试。
+* 更多和Swagger集成工具：[open-source tools](https://swagger.io/open-source-integrations/)
 
 -----
------
 
-## Swagger规范介绍
+## OpenAPI规范介绍
 
 ### **基本结构**
 Swagger可以用JSON或YAML编写。在本例中，我们只使用YAML示例，但JSON工作效果一样好。
@@ -120,7 +125,7 @@ paths:
 
 
 ### **元数据**
-每个Swagger规范文档以Swagger版本开始，2.0是最新版本。Swagger版本定义了API规范的整体结构 - 可以记录什么以及如何记录它。
+每个Swagger规范文档以Swagger版本开始，3.0是最新版本。Swagger版本定义了API规范的整体结构 - 可以记录什么以及如何记录它。
 
 ```yaml
 swagger: "2.0"
@@ -154,6 +159,7 @@ schemes:
 
 所有API路径都是相对于基本URL。例如，/users实际上是指*https://api.example.com/v1/users*。
 
+*更多*: [API Host and Base URL](https://swagger.io/docs/specification/2-0/api-host-and-base-path/).
 
 ### **消费和生产**
 
@@ -168,6 +174,7 @@ produces:
   - application/xml
 ```
   
+*更多*: [MIME Types](https://swagger.io/docs/specification/2-0/mime-types/).
   
 ### **路径**
 该```paths```部分定义了API中的各个端点（路径）以及这些端点支持的HTTP方法（操作）。例如，```GET /users```可以描述为：
@@ -185,6 +192,7 @@ paths:
           
 ```
 
+*更多*: [Paths and Operations](https://swagger.io/docs/specification/2-0/paths-and-operations/).
 
 ### **参数**
 操作可以包含参数，可以通过URL path（```/users/{userId}```），query string（```/users?role=admin```），headers（```X-CustomHeader: 
@@ -206,6 +214,7 @@ paths:
           description: OK
 ```
 
+*更多*: [Describing Parameters](https://swagger.io/docs/specification/2-0/describing-parameters/).
 
 ### **响应**
 对于每个操作，可以定义可能的状态代码，例如200 OK或404 Not Found，以及```schema```响应内容。响应内容可以通过内联定义或从外部定义引用```$ref```。还可以为不同的内容类型提供示例响应。
@@ -241,6 +250,7 @@ paths:
           description: Unexpected error
 ```
 
+*更多*: [Describing Responses](https://swagger.io/docs/specification/2-0/describing-responses/).
 
 ### **输入和输出模型**
 全局```definitions```部分允许定义API中使用的公共数据结构。每当```schema```需要时，可以使用```$ref```引用它们，无论是请求体和响应体。
@@ -315,12 +325,13 @@ security:
 
 支持的认证方法有：
 
-* Basic authentication
-* API key (as a header or query parameter)
+* [Basic authentication](https://swagger.io/docs/specification/2-0/authentication/basic-authentication/)
+* [API key](https://swagger.io/docs/specification/2-0/authentication/api-keys/) (as a header or query parameter)
 * OAuth 2 common flows (implicit, password, application and access code)
 
+*更多*: [Authentication](https://swagger.io/docs/specification/2-0/authentication/).
 
-## Swagger工具箱
+## Swagger工具箱介绍
 ### **Swagger Editor**
 Swagger Editor是第一个开源的专注于Swagger-based APIs的编辑器， 
 可以设计、描述、记录API。Swagger编辑器非常适合快速入门Swagger规范。它清爽，高效，并具有许多功能，可帮助设计和记录RESTful接口，开箱即用。
@@ -334,6 +345,14 @@ Swagger Editor允许在浏览器内的YAML中编辑Swagger API规范，并实时
 * 完全可定制：轻松配置和自定义任何东西，从行间距到主题
 * 关于构建：为API生成每种流行语言的服务器端和客户端
 
+### **Swagger Codegen**
+使用Swagger Codegen，对于每种流行语言，可以更快地构建和改善基于Swagger定义的API。Swagger 
+Codegen可以从Swagger规范生成服务器端和客户端SDK来简化构建过程，因此团队可以更好地关注API的实现和适配。
+
+* 生成服务器：通过生成超过20种不同语言的样板服务器代码来消除繁琐的调整和配置
+* 改善API消费：生成超过40种不同语言的客户端SDK，使客户端开发人员轻松与API集成
+* 持续改进：Swagger Codegen始终使用编程世界中最新和最好的改进进行更新
+
 ### **Swagger UI**
 Swagger UI允许任何人，无论是开发团队还是最终消费者，都可以可视化地与API资源进行交互，而无需有任何实现逻辑。它是从Swagger规范自动生成的，可视化文档使后端实现和客户端消费变得容易。
 
@@ -343,15 +362,7 @@ Swagger UI允许任何人，无论是开发团队还是最终消费者，都可�
 * 所有浏览器支持：Swagger UI可以在所有主流浏览器中运行
 * 完全可定制：代码完全开源，可以个性化定制和调整Swagger UI
 
-### **Swagger Codegen**
-使用Swagger Codegen，对于每种流行语言，可以更快地构建和改善基于Swagger定义的API。Swagger 
-Codegen可以从Swagger规范生成服务器端和客户端SDK来简化构建过程，因此团队可以更好地关注API的实现和适配。
-
-* 生成服务器：通过生成超过20种不同语言的样板服务器代码来消除繁琐的调整和配置
-* 改善API消费：生成超过40种不同语言的客户端SDK，使客户端开发人员轻松与API集成
-* 持续改进：Swagger Codegen始终使用编程世界中最新和最好的改进进行更新
-
-### **asciidoctor**
+## **asciidoctor**
 * asciidoc
 * asciidoctor
 

@@ -16,8 +16,8 @@
   * [Authentication](#authentication)
 - [Introduction to Swagger Open Source Tools](#introduction-to-swagger-open-source-tools)
   * [Swagger Editor](#swagger-editor)
-  * [Swagger UI](#swagger-ui)
   * [Swagger Codegen](#swagger-codegen)
+  * [Swagger UI](#swagger-ui)
 - [asciidoctor](#asciidoctor)
 
 
@@ -72,6 +72,7 @@ swagger-ui: `http://127.0.0.1:8080/swagger-ui.html`
 * Contact information, license, terms of use and other information.
 
 API specifications can be written in YAML or JSON. The format is easy to learn and readable to both humans and machines. The complete OpenAPI Specification can be found on GitHub: 
+[OpenAPI 2.0 Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md),
 [OpenAPI 3.0 Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md)
 
 ### Swagger
@@ -79,8 +80,8 @@ API specifications can be written in YAML or JSON. The format is easy to learn a
 Swagger is a set of open-source tools built around the OpenAPI Specification that can help you design, build, document and consume REST APIs. The major Swagger tools include:
 
 * [Swagger Editor](http://editor.swagger.io/?_ga=2.27098621.139862542.1529283950-1958724428.1521772135) – browser-based editor where you can write OpenAPI specs.
-* [Swagger UI](https://swagger.io/swagger-ui/) – renders OpenAPI specs as interactive API documentation.
 * [Swagger Codegen](https://github.com/swagger-api/swagger-codegen) – generates server stubs and client libraries from an OpenAPI spec.
+* [Swagger UI](https://swagger.io/swagger-ui/) – renders OpenAPI specs as interactive API documentation.
 
 ### Why Use OpenAPI?
 The ability of APIs to describe their own structure is the root of all awesomeness in OpenAPI. Once written, an OpenAPI specification and Swagger tools can drive your API development further in various ways:
@@ -122,7 +123,7 @@ paths:
 
 
 ### **Metadata**
-Every Swagger specification starts with the Swagger version, 2.0 being the latest version. A Swagger version defines the overall structure of an API specification -- what you can document and how you document it.
+Every Swagger specification starts with the Swagger version, 3.0 being the latest version. A Swagger version defines the overall structure of an API specification -- what you can document and how you document it.
 
 ```yaml
 swagger: "2.0"
@@ -154,7 +155,9 @@ schemes:
   - https
 ```
 
-All API paths are relative to the base URL. For example, /users actually means *https://api.example.com/v1/users. More info*: [API Host and Base URL](https://swagger.io/docs/specification/2-0/api-host-and-base-path/).
+All API paths are relative to the base URL. For example, /users actually means *https://api.example.com/v1/users. 
+
+More info*: [API Host and Base URL](https://swagger.io/docs/specification/2-0/api-host-and-base-path/).
 
 
 ### **Consumes, Produces**
