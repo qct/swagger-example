@@ -8,7 +8,7 @@
   * [Basic Structure](#basic-structure)
   * [Metadata](#metadata)
   * [Base URL](#base-url)
-  * [Consumes, Produces](#consumes, produces)
+  * [Consumes, Produces](#consumes-produces)
   * [Paths](#paths)
   * [Parameters](#parameters)
   * [Responses](#responses)
