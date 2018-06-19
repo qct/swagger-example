@@ -20,7 +20,43 @@
   * [Swagger Codegen](#Swagger-Codegen)
   * [asciidoctor](#asciidoctor)
   
-  
+
+## 如何开始
+
+1. install: git clone 之后, 在根目录执行:
+
+```
+swagger-server/bin/install.sh
+```
+
+会生成几种客户端SDK、服务器端stub和asciidoc、html文档，目录结构如下:
+
+```
++---asciidoc                    //asciidoc文档
++---client                      //自动生成的客户端
+|   +---go                      //--go语言客户端
+|   +---html2                   //--html文档
+|   \---java                    //--java客户端
++---docs                        //html文档
+|       swagger-example.html  
++---server                      //自动生成的服务器端stub
+|   +---jaxrs-resteasy          //--使用resteasy生成jaxrs的服务器端stub
+|   \---spring                  //--spring服务器端stub
+\---swagger-server              //一个server的例子， 可以生成swagger.json
+```
+
+2. 运行swagger-server：
+
+```
+java -jar swagger-server/target/swagger-server-${version}.jar
+```
+
+3. 探索
+swagger.json: `http://127.0.0.1:8080/v2/api-docs`
+
+swagger-ui: `http://127.0.0.1:8080/swagger-ui.html`
+
+
 ## OpenAPI 和 Swagger
 ### OpenAPI
 OpenAPI规范(以前叫Swagger规范)是Linux基金会的一个项目，试图通过定义一种用来描述API格式或API定义的语言，来规范RESTful服务开发过程。OpenAPI规范帮助我们描述一个API的全部信息，比如：
@@ -321,38 +357,3 @@ Codegen可以从Swagger规范生成服务器端和客户端SDK来简化构建过
 
 Asciidoctor是一种用于将AsciiDoc内容转换为HTML5，DocBook 5（或4.5）和其他格式的快速文本处理器和发布工具链。Asciidoctor是用Ruby编写的，封装成RubyGem并发布到RubyGems
 .org。该Gem还包含在几个Linux发行版中，包括Fedora，Debian和Ubuntu。Asciidoctor是开源的，托管在GitHub上，并根据MIT许可证发布。
-
-## 如何开始
-
-1. install: git clone 之后, 在根目录执行:
-
-```
-swagger-server/bin/install.sh
-```
-
-会生成几种客户端SDK、服务器端stub和asciidoc、html文档，目录结构如下:
-
-```
-+---asciidoc                    //asciidoc文档
-+---client                      //自动生成的客户端
-|   +---go                      //--go语言客户端
-|   +---html2                   //--html文档
-|   \---java                    //--java客户端
-+---docs                        //html文档
-|       swagger-example.html  
-+---server                      //自动生成的服务器端stub
-|   +---jaxrs-resteasy          //--使用resteasy生成jaxrs的服务器端stub
-|   \---spring                  //--spring服务器端stub
-\---swagger-server              //一个server的例子， 可以生成swagger.json
-```
-
-2. 运行swagger-server：
-
-```
-java -jar swagger-server/target/swagger-server-${version}.jar
-```
-
-3. 探索
-swagger.json: `http://127.0.0.1:8080/v2/api-docs`
-
-swagger-ui: `http://127.0.0.1:8080/swagger-ui.html`
