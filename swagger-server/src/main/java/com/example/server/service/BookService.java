@@ -24,6 +24,12 @@ public class BookService {
         new Book(3, 2, "挪威的森林", "村上春树")
     );
 
+    /**
+     * Get Book by id.
+     * @param id id
+     * @return Book
+     * @throws DemoException book not found exception
+     */
     public Book getById(int id) throws DemoException {
         return BOOKS.stream()
             .filter(b -> id == b.getId())

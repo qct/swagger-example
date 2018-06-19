@@ -40,6 +40,11 @@ public class SwaggerConfig {
     @Value("${server.port:8080}")
     private Integer port;
 
+    /**
+     * Swagger Docket configuration.
+     *
+     * @return Docket
+     */
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -66,16 +71,21 @@ public class SwaggerConfig {
             ;
     }
 
+    /**
+     * Cross origin filter.
+     *
+     * @return FilterRegistrationBean
+     */
     @Bean
     public FilterRegistrationBean corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.setAllowedOrigins(Lists.newArrayList("*"));
         config.setAllowedHeaders(Lists.newArrayList("*"));
         config.setAllowedMethods(Lists.newArrayList("*"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
-        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
+        FilterRegistrationBean bean = new FilterRegistrationBean<>(new CorsFilter(source));
         bean.setOrder(0);
         return bean;
     }

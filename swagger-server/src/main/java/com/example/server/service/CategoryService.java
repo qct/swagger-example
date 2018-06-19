@@ -25,6 +25,12 @@ public class CategoryService {
         return CATEGORIES;
     }
 
+    /**
+     * Get Category by id.
+     * @param id id
+     * @return Category
+     * @throws DemoException category not found exception
+     */
     public Category get(Integer id) throws DemoException {
         return CATEGORIES.stream()
             .filter(c -> id == c.getId())

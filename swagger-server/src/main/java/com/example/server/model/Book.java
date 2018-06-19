@@ -19,6 +19,13 @@ public class Book {
 
     private String author;
 
+    /**
+     * Create Book with all parameters.
+     * @param id id
+     * @param categoryId categoryId
+     * @param name name
+     * @param author author
+     */
     public Book(int id, int categoryId, String name, String author) {
         this.id = id;
         this.categoryId = categoryId;
