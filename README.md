@@ -4,7 +4,7 @@
   * [OpenAPI](#openapi)
   * [Swagger](#swagger)
   * [Why Use OpenAPI?](#why-use-openapi)
-- [OpenAPI Specification Introduction](#openapi-specification-introduction)
+- [Introduction to OpenAPI Specification](#introduction-to-openapi-specification)
   * [Basic Structure](#basic-structure)
   * [Metadata](#metadata)
   * [Base URL](#base-url)
@@ -14,11 +14,11 @@
   * [Responses](#responses)
   * [Input and Output Models](#input-and-output-models)
   * [Authentication](#authentication)
-- [Swagger Open Source Tools](#swagger-open-source-tools)
+- [Introduction to Swagger Open Source Tools](#introduction-to-swagger-open-source-tools)
   * [Swagger Editor](#swagger-editor)
   * [Swagger UI](#swagger-ui)
   * [Swagger Codegen](#swagger-codegen)
-  * [asciidoctor](#asciidoctor)
+- [asciidoctor](#asciidoctor)
 
 
 [中文版本Chinese version](README.zh-CN.md)
@@ -93,7 +93,7 @@ The ability of APIs to describe their own structure is the root of all awesomene
 
 -----
 
-## OpenAPI Specification Introduction
+## Introduction to OpenAPI Specification
 
 ### **Basic Structure**
 Swagger can be written in JSON or YAML. In this guide, we only use YAML examples, but JSON works equally well. A sample Swagger specification written in YAML looks like:
@@ -327,7 +327,7 @@ Supported authentication methods are:
 *More info*: [Authentication](https://swagger.io/docs/specification/2-0/authentication/).
 
 
-## Swagger Open Source Tools
+## Introduction to Swagger Open Source Tools
 ### **Swagger Editor**
 Design, describe, and document your API on the first open source editor fully dedicated to OpenAPI-based APIs. 
 The Swagger Editor is great for quickly getting started with the OpenAPI (formerly known as the Swagger Specification) specification, with support for Swagger 2.0 and OpenAPI 3.0. 
@@ -358,7 +358,7 @@ It’s automatically generated from your OpenAPI (formerly known as Swagger) Spe
 * Fully Customizable: Style and tweak your Swagger UI the way you want with full source code access
 * Complete OAS Support: Visualize APIs defined in Swagger 2.0 or OAS 3.0
 
-### **asciidoctor**
+## **asciidoctor**
 * asciidoc
 * asciidoctor
 
