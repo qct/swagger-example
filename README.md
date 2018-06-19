@@ -60,7 +60,7 @@ swagger.json: `http://127.0.0.1:8080/v2/api-docs`
 swagger-ui: `http://127.0.0.1:8080/swagger-ui.html`
 
 swagger-ui looks like this:
-![Demo-Api](swagger-ui.bmp)
+![Demo-Api](swagger-ui.png)
 
 ---
 ### ***Introduction to OpenAPI & Swagger Open Source Tools***
