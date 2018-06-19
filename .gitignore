@@ -23,8 +23,7 @@ dist/
 nbdist/
 .nb-gradle/
 
-
-asciidoc/
-client/
-server/
-docs/
+/asciidoc
+/client
+/server
+/docs
