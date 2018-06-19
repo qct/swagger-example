@@ -4,7 +4,7 @@
   * [OpenAPI](#openapi)
   * [Swagger](#swagger)
   * [为什么要使用OpenAPI](#为什么要使用openapi)
-- [Swagger规范介绍](#swagger规范介绍)
+- [OpenAPI规范介绍](#openapi规范介绍)
   * [基本结构](#基本结构)
   * [元数据](#元数据)
   * [基本URL](#基本url)
