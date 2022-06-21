@@ -14,8 +14,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.3.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.5.14</version>
+        <relativePath/>
     </parent>
 
     <modules>
@@ -33,6 +33,57 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>2.22.8</version>
+                <configuration>
+                    <pom>
+                        <!-- These are the defaults, you can override if you want -->
+                        <includes>
+                            <include>pom.xml</include>
+                        </includes>
+                        <sortPom>
+                            <!-- Should empty elements be expanded-->
+                            <expandEmptyElements>false</expandEmptyElements>
+                            <!-- Indentation -->
+                            <nrOfIndentSpace>4</nrOfIndentSpace>
+                        </sortPom>
+                        <!-- has its own section below -->
+                    </pom>
+                    <java>
+                        <toggleOffOn/>
+                        <importOrder/>
+                        <!-- standard import order -->
+                        <removeUnusedImports/>
+                        <!-- self-explanatory -->
+                        <!-- These are the defaults, you can override if you want -->
+                        <includes>
+                            <include>src/main/java/**/*.java</include>
+                            <include>src/test/java/**/*.java</include>
+                        </includes>
+                        <!-- no need to specify files, inferred automatically, but you can if you want -->
+                        <!-- apply a specific flavor of google-java-format and reflow long strings -->
+                        <!--<googleJavaFormat>
+                            <version>1.15.0</version>
+                            <style>GOOGLE</style>
+                            <reflowLongStrings>true</reflowLongStrings>
+                        </googleJavaFormat>
+                        &lt;!&ndash; Tricky here to indent with 4 spaces&ndash;&gt;
+                        <indent>
+                            <tabs>true</tabs>
+                            <spacesPerTab>2</spacesPerTab>
+                        </indent>
+                        <indent>
+                            <spaces>true</spaces>
+                            <spacesPerTab>4</spacesPerTab>
+                        </indent>-->
+                        <palantirJavaFormat>
+                            <version>2.24.0</version>
+                        </palantirJavaFormat>
+                    </java>
+                </configuration>
             </plugin>
         </plugins>
     </build>

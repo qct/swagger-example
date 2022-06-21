@@ -11,20 +11,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.example.server.model.Category;
 import com.example.server.service.CategoryService;
 import com.google.common.collect.Lists;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 /**
  * <p>Created by qct on 2017/10/20.
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebMvcTest(CategoryApi.class)
 public class CategoryApiMockTest {
 
@@ -43,7 +43,7 @@ public class CategoryApiMockTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/category/").accept(MediaType.ALL))
             .andDo(print())
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$", hasSize(2)));
     }
 
@@ -53,7 +53,7 @@ public class CategoryApiMockTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/category/").accept(MediaType.ALL))
             .andDo(print())
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$", hasSize(0)));
     }
 
@@ -62,10 +62,10 @@ public class CategoryApiMockTest {
     public void getShouldReturnSpecifiedCategory() throws Exception {
         when(categoryService.get(1)).thenReturn(new Category(1, "技术"));
         mockMvc.perform(MockMvcRequestBuilders
-            .get("/v1/category/1").accept(MediaType.ALL))
+                .get("/v1/category/1").accept(MediaType.ALL))
             .andDo(print())
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id", is(1)));
     }
 
@@ -73,10 +73,10 @@ public class CategoryApiMockTest {
     public void getByInvalidIdShouldReturnDefault() throws Exception {
         when(categoryService.get(5)).thenReturn(new Category(-1, "NOT EXIST"));
         mockMvc.perform(MockMvcRequestBuilders
-            .get("/v1/category/5").accept(MediaType.ALL))
+                .get("/v1/category/5").accept(MediaType.ALL))
             .andDo(print())
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id", is(-1)));
     }
 }

@@ -12,20 +12,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.example.server.model.Book;
 import com.example.server.service.BookService;
 import com.google.common.collect.Lists;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 /**
  * <p>Created by qct on 2017/10/20.
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebMvcTest(BookApi.class)
 public class BookApiMockTest {
 
@@ -41,7 +41,7 @@ public class BookApiMockTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/book/1").accept(MediaType.ALL))
             .andDo(print())
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id", is(1)));
     }
 
@@ -51,7 +51,7 @@ public class BookApiMockTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/book/5").accept(MediaType.ALL))
             .andDo(print())
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id", is(-1)));
     }
 
@@ -63,10 +63,10 @@ public class BookApiMockTest {
             new Book(3, 2, "挪威的森林", "村上春树")
         ));
         mockMvc.perform(MockMvcRequestBuilders
-            .get("/v1/book/getByCategoryId").param("id", "1").accept(MediaType.ALL))
+                .get("/v1/book/getByCategoryId").param("id", "1").accept(MediaType.ALL))
             .andDo(print())
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$", hasSize(3)));
     }
 
@@ -78,20 +78,20 @@ public class BookApiMockTest {
             new Book(3, 2, "挪威的森林", "村上春树")
         ));
         mockMvc.perform(MockMvcRequestBuilders
-            .get("/v1/book/getByCategoryId").param("id", "2").accept(MediaType.ALL))
+                .get("/v1/book/getByCategoryId").param("id", "2").accept(MediaType.ALL))
             .andDo(print())
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$", hasSize(0)));
     }
 
     @Test
     public void updateShouldReturnBoolean() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-            .post("/v1/book/update").param("id", "1").accept(MediaType.ALL))
+                .post("/v1/book/update").param("id", "1").accept(MediaType.ALL))
             .andDo(print())
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(content().string(isOneOf("true", "false")));
     }
 }
