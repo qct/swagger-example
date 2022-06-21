@@ -12,6 +12,5 @@ public class DemoException extends Exception {
         super(message);
     }
 
-    public DemoException() {
-    }
+    public DemoException() {}
 }

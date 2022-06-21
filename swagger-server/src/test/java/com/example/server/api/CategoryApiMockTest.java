@@ -36,47 +36,41 @@ public class CategoryApiMockTest {
 
     @Test
     public void getAllShouldReturnAllCategories() throws Exception {
-        when(categoryService.getAll()).thenReturn(Lists.newArrayList(
-            new Category(1, "技术"),
-            new Category(2, "文学")
-        ));
+        when(categoryService.getAll()).thenReturn(Lists.newArrayList(new Category(1, "技术"), new Category(2, "文学")));
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/category/").accept(MediaType.ALL))
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$", hasSize(2)));
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$", hasSize(2)));
     }
 
     @Test
     public void getAllShouldReturnEmpty() throws Exception {
         when(categoryService.getAll()).thenReturn(Lists.newArrayList());
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/category/").accept(MediaType.ALL))
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$", hasSize(0)));
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$", hasSize(0)));
     }
-
 
     @Test
     public void getShouldReturnSpecifiedCategory() throws Exception {
         when(categoryService.get(1)).thenReturn(new Category(1, "技术"));
-        mockMvc.perform(MockMvcRequestBuilders
-                .get("/v1/category/1").accept(MediaType.ALL))
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id", is(1)));
+        mockMvc.perform(MockMvcRequestBuilders.get("/v1/category/1").accept(MediaType.ALL))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.id", is(1)));
     }
 
     @Test
     public void getByInvalidIdShouldReturnDefault() throws Exception {
         when(categoryService.get(5)).thenReturn(new Category(-1, "NOT EXIST"));
-        mockMvc.perform(MockMvcRequestBuilders
-                .get("/v1/category/5").accept(MediaType.ALL))
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id", is(-1)));
+        mockMvc.perform(MockMvcRequestBuilders.get("/v1/category/5").accept(MediaType.ALL))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.id", is(-1)));
     }
 }

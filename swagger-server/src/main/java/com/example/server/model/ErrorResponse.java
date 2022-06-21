@@ -8,8 +8,7 @@ package com.example.server.model;
  */
 public class ErrorResponse {
 
-    public ErrorResponse() {
-    }
+    public ErrorResponse() {}
 
     public ErrorResponse(String message) {
         this.message = message;

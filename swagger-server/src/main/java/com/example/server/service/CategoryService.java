@@ -16,10 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryService {
 
-    private static final List<Category> CATEGORIES = Lists.newArrayList(
-        new Category(1, "技术"),
-        new Category(2, "文学")
-    );
+    private static final List<Category> CATEGORIES = Lists.newArrayList(new Category(1, "技术"), new Category(2, "文学"));
 
     public List<Category> getAll() {
         return CATEGORIES;
@@ -33,8 +30,8 @@ public class CategoryService {
      */
     public Category get(Integer id) throws DemoException {
         return CATEGORIES.stream()
-            .filter(c -> id == c.getId())
-            .findAny()
-            .orElseThrow(() -> new CategoryNotFoundException("category not found"));
+                .filter(c -> id == c.getId())
+                .findAny()
+                .orElseThrow(() -> new CategoryNotFoundException("category not found"));
     }
 }

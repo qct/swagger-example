@@ -23,7 +23,6 @@ import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-
 /**
  * Swagger configuration.
  *
@@ -48,27 +47,27 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-            .select()
-            .apis(RequestHandlerSelectors.any())
-            .paths(PathSelectors.regex("/v1/.*"))
-            .build()
-            .host(address + ":" + port)
-            .protocols(Sets.newHashSet("http", "https"))
-            .securitySchemes(Lists.newArrayList(new ApiKey("api_key", "api_key", "header")))
-            .securityContexts(Lists.newArrayList(securityContext()))
-            .apiInfo(apiInfo())
-            //.useDefaultResponseMessages(false)
-            //.globalResponseMessage(RequestMethod.GET, Lists.newArrayList(
-            //    new ResponseMessageBuilder()
-            //        .code(500)
-            //        .message("500 message")
-            //        .responseModel(new ModelRef("Error"))
-            //        .build(),
-            //    new ResponseMessageBuilder()
-            //        .code(403)
-            //        .message("Forbidden!")
-            //        .build()))
-            ;
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.regex("/v1/.*"))
+                .build()
+                .host(address + ":" + port)
+                .protocols(Sets.newHashSet("http", "https"))
+                .securitySchemes(Lists.newArrayList(new ApiKey("api_key", "api_key", "header")))
+                .securityContexts(Lists.newArrayList(securityContext()))
+                .apiInfo(apiInfo())
+        // .useDefaultResponseMessages(false)
+        // .globalResponseMessage(RequestMethod.GET, Lists.newArrayList(
+        //    new ResponseMessageBuilder()
+        //        .code(500)
+        //        .message("500 message")
+        //        .responseModel(new ModelRef("Error"))
+        //        .build(),
+        //    new ResponseMessageBuilder()
+        //        .code(403)
+        //        .message("Forbidden!")
+        //        .build()))
+        ;
     }
 
     /**
@@ -92,9 +91,9 @@ public class SwaggerConfig {
 
     private SecurityContext securityContext() {
         return SecurityContext.builder()
-            .securityReferences(defaultAuth())
-            .forPaths(PathSelectors.regex("/v1/book/.*"))
-            .build();
+                .securityReferences(defaultAuth())
+                .forPaths(PathSelectors.regex("/v1/book/.*"))
+                .build();
     }
 
     private List<SecurityReference> defaultAuth() {
@@ -103,13 +102,13 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("Swagger Demo")
-            .description("Swagger Demo, including swagger-codegen, swagger2markup and asciidoctor.")
-            .termsOfServiceUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
-            .contact(new Contact("qct", "http://qct.github.com", "tango.qct@gmail.com"))
-            .license("Apache License")
-            .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
-            .version("v1.1.0")
-            .build();
+                .title("Swagger Demo")
+                .description("Swagger Demo, including swagger-codegen, swagger2markup and asciidoctor.")
+                .termsOfServiceUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
+                .contact(new Contact("qct", "http://qct.github.com", "tango.qct@gmail.com"))
+                .license("Apache License")
+                .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
+                .version("v1.1.0")
+                .build();
     }
 }

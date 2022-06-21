@@ -19,10 +19,9 @@ import org.springframework.stereotype.Service;
 public class BookService {
 
     private static final List<Book> BOOKS = Lists.newArrayList(
-        new Book(1, 1, "Clean Code", "Martin"),
-        new Book(2, 1, "Effective Java", "Joshua Bloch"),
-        new Book(3, 2, "挪威的森林", "村上春树")
-    );
+            new Book(1, 1, "Clean Code", "Martin"),
+            new Book(2, 1, "Effective Java", "Joshua Bloch"),
+            new Book(3, 2, "挪威的森林", "村上春树"));
 
     /**
      * Get Book by id.
@@ -31,10 +30,8 @@ public class BookService {
      * @throws DemoException book not found exception
      */
     public Book getById(int id) throws DemoException {
-        return BOOKS.stream()
-            .filter(b -> id == b.getId())
-            .findFirst()
-            .orElseThrow((Supplier<DemoException>) () -> new BookNotFoundException("book not found"));
+        return BOOKS.stream().filter(b -> id == b.getId()).findFirst().orElseThrow((Supplier<DemoException>)
+                () -> new BookNotFoundException("book not found"));
     }
 
     public List<Book> getByCategoryId(Integer categoryId) {

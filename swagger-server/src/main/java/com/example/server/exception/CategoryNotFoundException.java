@@ -8,8 +8,7 @@ package com.example.server.exception;
  */
 public class CategoryNotFoundException extends DemoException {
 
-    public CategoryNotFoundException() {
-    }
+    public CategoryNotFoundException() {}
 
     public CategoryNotFoundException(String message) {
         super(message);

@@ -39,59 +39,62 @@ public class BookApiMockTest {
     public void getShouldReturnSpecifiedBook() throws Exception {
         when(bookService.getById(1)).thenReturn(new Book(1, 1, "Clean Code", "Martin"));
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/book/1").accept(MediaType.ALL))
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id", is(1)));
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.id", is(1)));
     }
 
     @Test
     public void getByInvalidIdShouldReturnDefault() throws Exception {
         when(bookService.getById(5)).thenReturn(new Book(-1, -1, "NOT EXIST", "NO AUTHOR"));
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/book/5").accept(MediaType.ALL))
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id", is(-1)));
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.id", is(-1)));
     }
 
     @Test
     public void getByCategoryIdShouldReturnBooksOfThisCategory() throws Exception {
-        when(bookService.getByCategoryId(1)).thenReturn(Lists.newArrayList(
-            new Book(1, 1, "Clean Code", "Martin"),
-            new Book(2, 1, "Effective Java", "Joshua Bloch"),
-            new Book(3, 2, "挪威的森林", "村上春树")
-        ));
-        mockMvc.perform(MockMvcRequestBuilders
-                .get("/v1/book/getByCategoryId").param("id", "1").accept(MediaType.ALL))
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$", hasSize(3)));
+        when(bookService.getByCategoryId(1))
+                .thenReturn(Lists.newArrayList(
+                        new Book(1, 1, "Clean Code", "Martin"),
+                        new Book(2, 1, "Effective Java", "Joshua Bloch"),
+                        new Book(3, 2, "挪威的森林", "村上春树")));
+        mockMvc.perform(MockMvcRequestBuilders.get("/v1/book/getByCategoryId")
+                        .param("id", "1")
+                        .accept(MediaType.ALL))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$", hasSize(3)));
     }
 
     @Test
     public void getByInvalidCategoryIdShouldReturnEmpty() throws Exception {
-        when(bookService.getByCategoryId(1)).thenReturn(Lists.newArrayList(
-            new Book(1, 1, "Clean Code", "Martin"),
-            new Book(2, 1, "Effective Java", "Joshua Bloch"),
-            new Book(3, 2, "挪威的森林", "村上春树")
-        ));
-        mockMvc.perform(MockMvcRequestBuilders
-                .get("/v1/book/getByCategoryId").param("id", "2").accept(MediaType.ALL))
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$", hasSize(0)));
+        when(bookService.getByCategoryId(1))
+                .thenReturn(Lists.newArrayList(
+                        new Book(1, 1, "Clean Code", "Martin"),
+                        new Book(2, 1, "Effective Java", "Joshua Bloch"),
+                        new Book(3, 2, "挪威的森林", "村上春树")));
+        mockMvc.perform(MockMvcRequestBuilders.get("/v1/book/getByCategoryId")
+                        .param("id", "2")
+                        .accept(MediaType.ALL))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$", hasSize(0)));
     }
 
     @Test
     public void updateShouldReturnBoolean() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders
-                .post("/v1/book/update").param("id", "1").accept(MediaType.ALL))
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(content().string(isOneOf("true", "false")));
+        mockMvc.perform(MockMvcRequestBuilders.post("/v1/book/update")
+                        .param("id", "1")
+                        .accept(MediaType.ALL))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(content().string(isOneOf("true", "false")));
     }
 }

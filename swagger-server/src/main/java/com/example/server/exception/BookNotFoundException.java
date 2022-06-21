@@ -8,8 +8,7 @@ package com.example.server.exception;
  */
 public class BookNotFoundException extends DemoException {
 
-    public BookNotFoundException() {
-    }
+    public BookNotFoundException() {}
 
     public BookNotFoundException(String message) {
         super(message);
